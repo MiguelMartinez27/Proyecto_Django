@@ -8,19 +8,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='rascadores',
+            name="rascadores",
             fields=[
-                ('rascador_uuid', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('name_rascador', models.CharField(max_length=64, unique=True)),
-                ('descipcion_rascador', models.TextField(blank=True)),
-                ('image_url_rascador', models.URLField()),
-                ('slug_rascador', models.SlugField(max_length=75, unique=True)),
-                ('is_private', models.BooleanField()),
+                (
+                    "rascador_uuid",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("name_rascador", models.CharField(max_length=64, unique=True)),
+                ("descipcion_rascador", models.TextField(blank=True)),
+                ("image_url_rascador", models.URLField()),
+                ("slug_rascador", models.SlugField(max_length=75, unique=True)),
+                ("is_private", models.BooleanField()),
             ],
         ),
     ]
