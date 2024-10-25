@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import rascadores
+
+
+admin.site.register(rascadores)
+
+# admin, admin123
