@@ -1,5 +1,22 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Rascadores
+from .forms import ContactForm
+
+
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/contacto_exito/")
+    else:
+        form = ContactForm()
+    return render(request, "web/contact.html", {"form": form})
+
+
+def contact_exito(request):
+    return render(request, "web/contacto_exito.html")
 
 
 def home(request):
