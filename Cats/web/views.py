@@ -6,6 +6,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 
 def contact(request):
@@ -47,3 +55,45 @@ class Registro(generic.CreateView):
 class LogoutView(generic.CreateView):
     next_page = "/home/"
     template_name = "registration/logout.html"
+
+
+class RascadoresListView(ListView):
+    model = Rascadores
+    template_name = "web/rascadores_list.html"
+
+
+class RascadoresDetailView(DetailView):
+    model = Rascadores
+    template_name = "web/rascadores_detail.html"
+
+
+class RascadoresCreateView(LoginRequiredMixin, CreateView):
+    model = Rascadores
+    fields = [
+        "name_rascador",
+        "descripcion_rascador",
+        "image_url_rascador",
+        "slug_rascador",
+        "is_private",
+    ]
+    template_name = "web/rascadores_form.html"
+    success_url = reverse_lazy("rascadores_list")
+
+
+class RascadoresUpdateView(LoginRequiredMixin, UpdateView):
+    model = Rascadores
+    fields = [
+        "name_rascador",
+        "descripcion_rascador",
+        "image_url_rascador",
+        "slug_rascador",
+        "is_private",
+    ]
+    template_name = "web/rascadores_form.html"
+    success_url = reverse_lazy("rascadores_list")
+
+
+class RascadoresDeleteView(LoginRequiredMixin, DeleteView):
+    model = Rascadores
+    template_name = "web/rascadores_confirm_delete.html"
+    success_url = reverse_lazy("rascadores_list")

@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Lista de Rascadores</h1>
+<a href="{% url 'rascadores_create' %}">Agregar Rascador</a>
+<ul class="list-group">
+  {% for rascador in object_list %}
+  <li class="list-group-item">
+    <img
+      src="{{ rascador.image_url_rascador }}"
+      class="card-img-left"
+      alt="Imagen del rascador"
+      height="150px"
+      width="150px"
+    />
+    <a href="{% url 'rascadores_detail' rascador.rascador_uuid %}"
+      >{{ rascador.name_rascador }}</a
+    >
+
+    <a href="{% url 'rascadores_update' rascador.rascador_uuid %}">Editar</a>
+    <a href="{% url 'rascadores_delete' rascador.rascador_uuid %}">Eliminar</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

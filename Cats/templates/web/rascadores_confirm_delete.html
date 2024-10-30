@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<h2>
+  ¿Estás seguro de que deseas eliminar el rascador "{{ object.name_rascador }}"?
+</h2>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+  <a href="{% url 'rascadores_list' %}">Cancelar</a>
+</form>
+{% endblock %}

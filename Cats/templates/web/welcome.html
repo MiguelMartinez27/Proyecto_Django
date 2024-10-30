@@ -12,7 +12,11 @@
         alt="Imagen del rascador"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ rascador.name_rascador }}</h5>
+        <h5 class="card-title">
+          <a href="{% url 'rascadores_detail' rascador.rascador_uuid %}"
+            >{{ rascador.name_rascador }}</a
+          >
+        </h5>
         <p class="card-text">{{ rascador.descripcion_rascador }}</p>
       </div>
     </div>
