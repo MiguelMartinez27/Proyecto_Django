@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %} {% if form.errors %}
+<p class="text-danger">
+  Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.
+</p>
+{% endif %} {% if next %} {% if user.is_authenticated %}
+<p>
+  Su cuenta no tiene acceso a esta página. Para continuar, inicie sesión con una
+  cuenta que tenga acceso.
+</p>
+{% else %}
+<p>Por favor inicie sesión para ver esta página.</p>
+{% endif %} {% endif %}
+
+  <div class="container mt-4">
+    <h2 class="text-center">Iniciar Sesión</h2>
+    <form
+      method="post"
+      action="{% url 'login' %}"
+      class="p-4 border rounded shadow-sm"
+    >
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="id_username" class="form-label"
+          >{{ form.username.label }}</label
+        >
+        {{ form.username }}
+      </div>
+      <div class="mb-3">
+        <label for="id_password" class="form-label"
+          >{{ form.password.label }}</label
+        >
+        {{ form.password }}
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </form>
+  </div>
+
+  <p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p>
+
+  {% endblock %}
+</form>
