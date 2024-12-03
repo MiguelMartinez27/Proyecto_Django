@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center">{{ object.name_rascador }}</h1>
+  <div class="text-center">
+    <img
+      src="{{ object.image_url_rascador }}"
+      alt="{{ object.name_rascador }}"
+      class="img-fluid"
+    />
+  </div>
+  <p class="lead">{{ object.descripcion_rascador }}</p>
+  <p><strong>Slug:</strong> {{ object.slug_rascador }}</p>
+  <p><strong>Privado:</strong> {{ object.is_private }}</p>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a
+      href="{% url 'rascadores_update' object.rascador_uuid %}"
+      class="btn btn-warning me-md-2"
+      >Editar</a
+    >
+    <a
+      href="{% url 'rascadores_delete' object.rascador_uuid %}"
+      class="btn btn-danger me-md-2"
+      >Eliminar</a
+    >
+    <a href="{% url 'rascadores_list' %}" class="btn btn-secondary"
+      >Volver a la lista</a
+    >
+  </div>
+</div>
+{% endblock %}

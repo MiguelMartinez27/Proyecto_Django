@@ -1,7 +1,32 @@
 {% extends 'base.html' %} {% block content %}
-<div>
-  <h1 class="container"><center>Indice</h1>
-
-  <p>insertar cards</p>
+<div class="container">
+  <h1 class="text-center">Índice</h1>
+  {% if rascadores %}
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for rascador in rascadores %}
+    <div class="col">
+      <div class="card">
+        <img
+          src="{{ rascador.image_url_rascador }}"
+          class="card-img-top"
+          alt="Imagen del rascador"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'rascadores_detail' rascador.rascador_uuid %}"
+              >{{ rascador.name_rascador }}</a
+            >
+          </h5>
+          <p class="card-text">{{ rascador.descripcion_rascador }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <li class="list-group-item">
+    Lo sentimos, por el momento no hay rascadores disponibles
+  </li>
+  {% endif %}
 </div>
 {% endblock %}

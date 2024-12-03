@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center">
+    {% if object %}Editar{% else %}Agregar{% endif %} Rascador
+  </h1>
+  <form method="post" class="mt-4">
+    {% csrf_token %}
+    <div class="form-group container">
+      <div class="row">{{ form.as_p }}</div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="{% url 'rascadores_list' %}" class="btn btn-secondary"
+        >Volver a la lista</a
+      >
+    </div>
+  </form>
+</div>
+{% endblock %}
